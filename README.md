@@ -1,5 +1,11 @@
-# Project 3: Python Application with CLI
+# Project 3: Python Application with CLI + ORM
 
+# Running the Applicaion
+- python lib/cli.py
+
+# Files
+- lib/cli.py: runs the CLI
+- lib/helpers.py: helper functions for mvp functionality
 
 # Environment Setup
 ## Python Manager(within Windows WSL2)
@@ -23,8 +29,6 @@
 
 # Running Tests
 - pytest -x 
-
-
 
 # Resources
 - https://www.infoworld.com/article/3561758/how-to-manage-python-projects-with-pipenv.html
