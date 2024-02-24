@@ -1,3 +1,5 @@
+from __init__ import CONN, CURSOR
+
 class User:
     all_users = []
 
@@ -23,3 +25,17 @@ class User:
             self._username = username
         else:
             raise Exception("Username must be of type string and more than 4 characters.")
+
+    @classmethod
+    def create_table(cls):
+        '''Create a new table to persist the attributes of User instance'''
+        sql = """
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY,
+                username TEXT,
+                cohort_id INTEGER
+            )
+            """
+            CURSOR.execute(sql)
+            CONN.commit
+            CONN.close()
