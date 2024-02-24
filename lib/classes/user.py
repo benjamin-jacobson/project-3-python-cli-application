@@ -34,8 +34,19 @@ class User:
                 id INTEGER PRIMARY KEY,
                 username TEXT,
                 cohort_id INTEGER
-            )
+            );
             """
         CURSOR.execute(sql)
         CONN.commit
-        CONN.close()
+        #CONN.close()
+
+    @classmethod
+    def drop_table(cls):
+        '''Drop persistant user table'''
+        sql = """
+        DROP TABLE IF EXISTS users; 
+        """
+        CURSOR.execute(sql)
+        CONN.commit
+        #CONN.close()
+    
