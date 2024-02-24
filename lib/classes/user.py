@@ -27,6 +27,13 @@ class User:
             raise Exception("Username must be of type string and more than 4 characters.")
 
     @classmethod
+    def create(cls,username, cohort_id):
+        '''Initialize a new User Instance and save object to db'''
+        new_user = cls(username,cohort_id)
+        #new_user.save()
+        return new_user
+
+    @classmethod
     def create_table(cls):
         '''Create a new table to persist the attributes of User instance'''
         sql = """
