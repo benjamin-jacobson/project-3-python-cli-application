@@ -8,7 +8,8 @@ def seed_database():
     User.create_table()
 
     # Creating seed data
-    User.create("Mikey",14)
+    u1 = User.create("Mikey",14)
+    print(u1)
     print(len(User.all_users))
 
     # Closing database connection

@@ -11,8 +11,8 @@ class User:
 
     def __repr__(self):
         return (
-            f"Username {self.username}" +
-            f"cohort_id {cohort_id}"
+            f"Username: {self.username}," +
+            f"cohort_id: {self.cohort_id}"
         )
     
     @property
