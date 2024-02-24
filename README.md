@@ -26,9 +26,15 @@
 - Installing packages
     - pipenv install pandas (this will put in the piplock file)
 
+# Database Local Setup
+- See below for setting up SQLite on WSL2
+- sqlite3 version 3.31.1
+- Creating database:
+    - sqlite3 example2024.db (to updage to actual name later)
 
 # Running Tests
 - pytest -x 
 
 # Resources
 - https://www.infoworld.com/article/3561758/how-to-manage-python-projects-with-pipenv.html
+- https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-sqlite
