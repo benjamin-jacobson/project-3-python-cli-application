@@ -38,3 +38,6 @@
 # Resources
 - https://www.infoworld.com/article/3561758/how-to-manage-python-projects-with-pipenv.html
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-sqlite
+
+### Curicullum Resources
+- https://learning.flatironschool.com/courses/6550/pages/phase-3-cli+orm-project-template?module_item_id=598926

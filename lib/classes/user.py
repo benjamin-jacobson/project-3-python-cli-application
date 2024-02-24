@@ -1,4 +1,4 @@
-from __init__ import CONN, CURSOR
+from classes.__init__ import CONN, CURSOR
 
 class User:
     all_users = []
@@ -36,6 +36,6 @@ class User:
                 cohort_id INTEGER
             )
             """
-            CURSOR.execute(sql)
-            CONN.commit
-            CONN.close()
+        CURSOR.execute(sql)
+        CONN.commit
+        CONN.close()
