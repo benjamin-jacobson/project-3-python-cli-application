@@ -2,6 +2,7 @@ from classes.__init__ import CONN, CURSOR
 
 class User:
     all_users = []
+    all_users_persistant = {}
 
     def __init__(self,username, cohort_id, id=None):
         self.id = id
@@ -30,7 +31,9 @@ class User:
     def create(cls,username, cohort_id):
         '''Initialize a new User Instance and save object to db'''
         new_user = cls(username,cohort_id)
-        #new_user.save()
+
+        # Saving using to persistant db, and to class {} all_users_persistant
+        new_user.save()
         return new_user
 
     @classmethod
@@ -56,4 +59,24 @@ class User:
         CURSOR.execute(sql)
         CONN.commit
         #CONN.close()
-    
+
+    def save(self):
+        '''
+        Insert a new row into the persistant db of the current user instance.
+        Update object id attibute using the primary key of the new row
+        Save the object in the local dictionary using the table rows PK as dictionary key
+        NOTE: used in class method create().
+        '''
+
+        sql ="""
+            INSERT INTO users (username, cohort_id)
+            VALUES (?, ?);
+
+        """
+        CURSOR.execute(sql, (self.username, self.cohort_id))
+        CONN.commit()
+
+        # Getting the PK from the cursor, and using as the instance id
+        self.id = CURSOR.lastrowid
+        # Adding self (current user) with PK as key to class attribute with all saves {}
+        type(self).all_users_persistant[self.id] = self

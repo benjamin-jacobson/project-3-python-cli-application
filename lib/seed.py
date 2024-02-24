@@ -11,6 +11,7 @@ def seed_database():
     u1 = User.create("Mikey",14)
     print(u1)
     print(len(User.all_users))
+    print(len(User.all_users_persistant))
 
     # Closing database connection
     CONN.close()
