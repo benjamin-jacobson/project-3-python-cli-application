@@ -80,3 +80,14 @@ class User:
         self.id = CURSOR.lastrowid
         # Adding self (current user) with PK as key to class attribute with all saves {}
         type(self).all_users_persistant[self.id] = self
+
+    @classmethod
+    def get_all(cls):
+        pass
+
+    # TODO delete() """Delete the table row corresponding to the current Employee instance,
+    # TODO   delete the dictionary entry, and reassign id attribute"""
+    # TODO update() """Update the table row corresponding to the current instance."""
+    # TODO instance_from_db() Return an User object having the attribute values from the table row
+    # TODO find_by_id() """Return User object corresponding to the table row matching the specified primary key"""
+    # TODO find_by_username() """Return User object corresponding to first table row matching specified name"""
