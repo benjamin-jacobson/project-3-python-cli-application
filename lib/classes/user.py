@@ -83,7 +83,15 @@ class User:
 
     @classmethod
     def get_all(cls):
-        pass
+        """Return a list containing one object per table row"""
+        sql = """
+            SELECT * FROM users;
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return rows
+
+        # alternative
+        # return [cls.insance_from_db(row) for row in rows]
 
     # TODO delete() """Delete the table row corresponding to the current Employee instance,
     # TODO   delete the dictionary entry, and reassign id attribute"""

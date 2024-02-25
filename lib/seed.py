@@ -9,9 +9,14 @@ def seed_database():
 
     # Creating seed data
     u1 = User.create("Mikey",14)
+    u2 = User.create("Benny",27)
     print(u1)
     print(len(User.all_users))
     print(len(User.all_users_persistant))
+
+    out = User.get_all()
+    print("All rows in db:")
+    print(out)
 
     # Closing database connection
     CONN.close()
