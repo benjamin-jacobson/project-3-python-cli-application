@@ -82,16 +82,44 @@ class User:
         type(self).all_users_persistant[self.id] = self
 
     @classmethod
-    def get_all(cls):
-        """Return a list containing one object per table row"""
+    def get_all_data_in_user_database_table(cls):
+        """Return a list of data in the user table."""
         sql = """
             SELECT * FROM users;
         """
         rows = CURSOR.execute(sql).fetchall()
         return rows
 
-        # alternative
-        # return [cls.insance_from_db(row) for row in rows]
+    @classmethod
+    def get_all_objects(cls):
+        """ Return a list containing one object per table row.
+            Uses instance_from_db to check or create a new dictionary item if missing in local all
+        """
+        sql = """
+            SELECT * FROM users;
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        # print(type(rows)) # list, could convert to DF via pandas if wanted for other analytics/ai
+        # For all data in SELECT statement from user, using instance_from_db method
+        # that checks against local {} all_users_persistant, updates local if different
+        # or creates a local {} key/value pair if missin
+        return [cls.instance_from_db(row) for row in rows]
+
+    @classmethod
+    def instance_from_db(cls, row):
+        """Return an User object having the attribute values from the table row."""
+        # Check the dictionary all_users_persistant for existing user instance using the row's primary key
+        u = cls.all_users_persistant.get(row[0]) # row 0 is the PK by design
+        if u:
+            # ensure attributes match row values in case local instance was modified # TODO what if different?
+            u.username = row[1]
+            u.cohort_id = row[2]
+        else:
+            #
+            u = cls(row[1],row[2])
+            u.id = row[0]
+            cls.all_users_persistant[u.id] = u
+        return u
 
     # TODO delete() """Delete the table row corresponding to the current Employee instance,
     # TODO   delete the dictionary entry, and reassign id attribute"""

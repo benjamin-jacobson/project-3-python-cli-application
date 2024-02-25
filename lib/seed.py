@@ -14,8 +14,12 @@ def seed_database():
     print(len(User.all_users))
     print(len(User.all_users_persistant))
 
-    out = User.get_all()
+    out = User.get_all_data_in_user_database_table()
     print("All rows in db:")
+    print(out)
+
+    out = User.get_all_objects()
+    print("All rows in db and local {}:")
     print(out)
 
     # Closing database connection
