@@ -19,6 +19,15 @@ def seed_database():
     print(out)
 
     out = User.get_all_objects()
+    print(f"All rows in db and local {out}:")
+    print(f"Just local {User.all_users_persistant}")
+
+    print(u2)
+    print("---")
+    u2.delete()
+
+    print(f"Testing deleting user 2:{u2} ")
+    out = User.get_all_objects()
     print("All rows in db and local {}:")
     print(out)
 

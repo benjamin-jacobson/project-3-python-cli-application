@@ -78,6 +78,7 @@ class User:
 
         # Getting the PK from the cursor, and using as the instance id
         self.id = CURSOR.lastrowid
+        print(CURSOR.lastrowid)
         # Adding self (current user) with PK as key to class attribute with all saves {}
         type(self).all_users_persistant[self.id] = self
 
@@ -121,8 +122,24 @@ class User:
             cls.all_users_persistant[u.id] = u
         return u
 
-    # TODO delete() """Delete the table row corresponding to the current Employee instance,
-    # TODO   delete the dictionary entry, and reassign id attribute"""
+    def delete(self):
+        """Delete table row corresponding to current instance ojbect.
+        Delete the dictionary {} entry and reassign id attribute.
+        """
+
+        sql = """
+            DELETE FROM users
+            WHERE id = ?;
+        """
+        print(self.id)
+        CURSOR.execute(sql, (self.id,)) # sneaky comma
+        CONN.commit()
+
+        # Delete the dictionary entry of instance pk
+        del type(self).all_users_persistant[self.id]
+        # Set id to None
+        self.id = None
+
     # TODO update() """Update the table row corresponding to the current instance."""
     # TODO instance_from_db() Return an User object having the attribute values from the table row
     # TODO find_by_id() """Return User object corresponding to the table row matching the specified primary key"""
