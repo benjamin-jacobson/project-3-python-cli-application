@@ -22,6 +22,10 @@ def seed_database():
     print(f"All rows in db and local {out}:")
     print(f"Just local {User.all_users_persistant}")
 
+    print('findbyid')
+    
+    print(f"vvvv: {User.find_by_id(2)}")
+
     print(u2)
     print("---")
     u2.delete()
@@ -30,6 +34,8 @@ def seed_database():
     out = User.get_all_objects()
     print("All rows in db and local {}:")
     print(out)
+
+
 
     # Closing database connection
     CONN.close()
