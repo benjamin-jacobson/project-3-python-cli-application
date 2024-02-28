@@ -140,7 +140,16 @@ class User:
         # Set id to None
         self.id = None
 
-    # TODO update() """Update the table row corresponding to the current instance."""
-    # TODO instance_from_db() Return an User object having the attribute values from the table row
+    def update(self):
+        """Update the table row corresponding to the current instance."""
+        sql="""
+            UPDATE users
+            SET username = ?, cohort_id = ?
+            WHERE id = ?;
+        """
+        CURSOR.execute(sql, (self.username, self.cohort_id,self.id))
+        CONN.commit()
+
+
     # TODO find_by_id() """Return User object corresponding to the table row matching the specified primary key"""
     # TODO find_by_username() """Return User object corresponding to first table row matching specified name"""

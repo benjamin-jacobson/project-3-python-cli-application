@@ -27,3 +27,15 @@ class TestUser:
         # Testing that an exception is raise when <4 chars per property
         with pytest.raises(Exception):
             User("Ro",12)
+    
+    def test_update(self):
+        User.create_table()
+        user_1 = User.create("Joeyy", 12)
+        user_2 = User.create("Mikey", 12)
+        user_1_new_name = "blahblah"
+
+        user_1.username = user_1_new_name
+        user_1.update()
+
+        assert((user_1.username,user_1.cohort_id)==(user_1_new_name, 12))
+        assert((user_2.username,user_2.cohort_id)==("Mikey", 12))
