@@ -160,6 +160,5 @@ class User:
         """
         row = CURSOR.execute(sql,(id,)).fetchone()
         return cls.instance_from_db(row) if row else None
-        
-    # TODO find_by_id() 
+
     # TODO find_by_username() """Return User object corresponding to first table row matching specified name"""

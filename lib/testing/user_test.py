@@ -29,6 +29,7 @@ class TestUser:
             User("Ro",12)
     
     def test_update(self):
+        User.drop_table()
         User.create_table()
         user_1 = User.create("Joeyy", 12)
         user_2 = User.create("Mikey", 12)
@@ -39,3 +40,13 @@ class TestUser:
 
         assert((user_1.username,user_1.cohort_id)==(user_1_new_name, 12))
         assert((user_2.username,user_2.cohort_id)==("Mikey", 12))
+
+    def test_find_by_id(self):
+        User.drop_table()
+        User.create_table()
+        user_1 = User.create("Joeyy", 12)
+        user_2 = User.create("Mikey", 12)
+
+
+        u = User.find_by_id(user_1.id)
+        assert((u.id, u.username,u.cohort_id)==(1,"Joeyy", 12))
