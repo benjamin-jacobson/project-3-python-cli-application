@@ -50,3 +50,14 @@ class TestUser:
 
         u = User.find_by_id(user_1.id)
         assert((u.id, u.username,u.cohort_id)==(1,"Joeyy", 12))
+
+
+    def test_find_by_username(self):
+        User.drop_table()
+        User.create_table()
+        user_1 = User.create("Joeyy", 12)
+        user_2 = User.create("Mikey", 12)
+
+
+        u = User.find_by_username(user_1.username)
+        assert((u.id, u.username,u.cohort_id)==(1,"Joeyy", 12))

@@ -161,4 +161,13 @@ class User:
         row = CURSOR.execute(sql,(id,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
-    # TODO find_by_username() """Return User object corresponding to first table row matching specified name"""
+    @classmethod
+    def find_by_username(cls,username):
+        """Return User object corresponding to the table row matching the specified username"""
+        sql="""
+            SELECT *
+            FROM users
+            WHERE username = ?;
+        """
+        row = CURSOR.execute(sql,(username,)).fetchone()
+        return cls.instance_from_db(row) if row else None
