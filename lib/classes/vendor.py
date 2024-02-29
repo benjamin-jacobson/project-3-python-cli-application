@@ -20,10 +20,10 @@ class Vendor:
     
     @name.setter
     def name(self,name):
-        if isinstance(name,str) and (len(name)>2):
+        if isinstance(name,str) and (len(name)>0):
             self._name = name
         else:
-            raise Exception("name must be of type string and more than 2 characters.")
+            raise Exception("name must be of type string and more than 0 characters.")
 
     @classmethod
     def create(cls,name, type_id):
