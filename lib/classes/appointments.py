@@ -1,5 +1,8 @@
 from classes.__init__ import CONN, CURSOR
 
+from classes.user import User
+from classes.vendor import Vendor
+
 class Appointment:
     all_appointments_persistant = {}
 
@@ -39,3 +42,10 @@ class Appointment:
             self._vendor = vendor
         else:
             raise Exception("vendor must be of class Vendor.")
+
+    @classmethod
+    def create(cls, user, vendor, appointment_type, appointment_year):
+        """ Initialize a new Appointment instance and save the object to the database """
+        appointment = cls(user, vendor, appointment_type, appointment_year)
+        # appointment.save()
+        return appointment
