@@ -4,6 +4,8 @@ from classes.user import User
 from classes.__init__ import CONN, CURSOR
 
 def seed_database():
+    
+    #User table
     User.drop_table()
     User.create_table()
 
@@ -30,6 +32,12 @@ def seed_database():
     out = User.get_all_objects()
     print("All rows in db and local {}:")
     print(out)
+
+    # Vendor
+    Vendor.drop_table()
+    Vendor.create_table()
+    vendor_1 = Vendor.create("Twitter", 234)
+    vendor_2 = Vendor.create("Ebay", 222)
 
 
 
