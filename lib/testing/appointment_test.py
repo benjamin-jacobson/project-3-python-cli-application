@@ -9,16 +9,16 @@ sys.path.append(parent_dir)
 
 from classes.user import User
 from classes.vendor import Vendor
-from classes.appointments import Appointment
+from classes.appointment import Appointment
 
 class TestAppointment:
     '''testing lib/appointment.py'''
 
     def test_appointment_py_exists(self):
-        assert(path.exists("lib/classes/appointments.py"))
+        assert(path.exists("lib/classes/appointment.py"))
 
     def test_app_py_runs(self):
-        runpy.run_path("lib/classes/appointments.py")
+        runpy.run_path("lib/classes/appointment.py")
 
     def test_initialized_appointment(self):
         '''Appointment is initialized'''
@@ -38,7 +38,7 @@ class TestAppointment:
         '''Appointment is initialized'''
         User.drop_table()
         User.create_table()
-        user_1 = User("Roberto",12)
+        user_1 = User.create("Roberto",12)
 
         Vendor.drop_table()
         Vendor.create_table()

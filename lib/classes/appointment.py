@@ -106,6 +106,7 @@ class Appointment:
         """
         rows = CURSOR.execute(sql).fetchall()
         return rows
+
     ### need to clean below and convert to appointments
     @classmethod
     def get_all_objects(cls):
@@ -113,30 +114,32 @@ class Appointment:
             Uses instance_from_db to check or create a new dictionary item if missing in local all
         """
         sql = """
-            SELECT * FROM users;
+            SELECT * FROM appointments;
         """
         rows = CURSOR.execute(sql).fetchall()
         # print(type(rows)) # list, could convert to DF via pandas if wanted for other analytics/ai
-        # For all data in SELECT statement from user, using instance_from_db method
-        # that checks against local {} all_users_persistant, updates local if different
-        # or creates a local {} key/value pair if missin
+        # For all data in SELECT statement from appointments, using instance_from_db method
+        # that checks against local {} all_appointments_persistant, updates local if different
+        # or creates a local {} key/value pair if missing
         return [cls.instance_from_db(row) for row in rows]
 
     @classmethod
     def instance_from_db(cls, row):
-        """Return an User object having the attribute values from the table row."""
+        """Return an Appointment object having the attribute values from the table row."""
         # Check the dictionary all_users_persistant for existing user instance using the row's primary key
-        u = cls.all_users_persistant.get(row[0]) # row 0 is the PK by design
-        if u:
+        apt = cls.all_appointments_persistant.get(row[0]) # row 0 is the PK by design
+        if apt:
             # ensure attributes match row values in case local instance was modified # TODO what if different?
-            u.username = row[1]
-            u.cohort_id = row[2]
+            apt.user_id = row[1]
+            apt.vendor_id = row[2]
+            apt.appointment_type = row[3]
+            apt.appointment_year = row[4]
         else:
             #
-            u = cls(row[1],row[2])
-            u.id = row[0]
-            cls.all_users_persistant[u.id] = u
-        return u
+            apt = cls(row[1],row[2],row[3],row[4])
+            apt.id = row[0]
+            cls.all_appointments_persistant[apt.id] = apt
+        return apt
 
     def delete(self):
         """Delete table row corresponding to current instance ojbect.
