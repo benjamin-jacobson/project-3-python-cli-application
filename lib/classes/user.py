@@ -171,3 +171,14 @@ class User:
         """
         row = CURSOR.execute(sql,(username,)).fetchone()
         return cls.instance_from_db(row) if row else None
+
+    @classmethod
+    def find_by_cohort(cls,username):
+        """Return User object corresponding to the table row matching the specified cohort_id"""
+        sql="""
+            SELECT *
+            FROM users
+            WHERE cohort_id = ?;
+        """
+        row = CURSOR.execute(sql,(username,)).fetchone()
+        return cls.instance_from_db(row) if row else None

@@ -170,7 +170,7 @@ class Appointment:
         CONN.commit()
 
     # @classmethod
-    # def find_by_id(cls,id):
+    # def find_by_id(clsgi,id):
     #     """Return User object corresponding to the table row matching the specified primary key"""
     #     sql="""
     #         SELECT *
