@@ -65,6 +65,9 @@ def seed_database():
     print("-----")
     print(Appointment.get_all_objects())
 
+    print("-----")
+    apt_2.delete()
+    print(Appointment.get_all_objects())
 
     # Closing database connection
     CONN.close()

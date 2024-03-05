@@ -130,8 +130,8 @@ class Appointment:
         apt = cls.all_appointments_persistant.get(row[0]) # row 0 is the PK by design
         if apt:
             # ensure attributes match row values in case local instance was modified # TODO what if different?
-            apt.user_id = row[1]
-            apt.vendor_id = row[2]
+            apt.user.id = row[1]
+            apt.vendor.id = row[2]
             apt.appointment_type = row[3]
             apt.appointment_year = row[4]
         else:
@@ -147,7 +147,7 @@ class Appointment:
         """
 
         sql = """
-            DELETE FROM users
+            DELETE FROM appointments
             WHERE id = ?;
         """
         print(self.id)
@@ -155,38 +155,38 @@ class Appointment:
         CONN.commit()
 
         # Delete the dictionary entry of instance pk
-        del type(self).all_users_persistant[self.id]
+        del type(self).all_appointments_persistant[self.id]
         # Set id to None
         self.id = None
 
     def update(self):
         """Update the table row corresponding to the current instance."""
         sql="""
-            UPDATE users
-            SET username = ?, cohort_id = ?
+            UPDATE appointments
+            SET user_id = ?, vendor_id = ?, appointment_type = ?, appointment_year = ?
             WHERE id = ?;
         """
-        CURSOR.execute(sql, (self.username, self.cohort_id,self.id))
+        CURSOR.execute(sql, (self.user.id, self.vendor.id,self.appointment_type,self.appointment_year))
         CONN.commit()
 
-    @classmethod
-    def find_by_id(cls,id):
-        """Return User object corresponding to the table row matching the specified primary key"""
-        sql="""
-            SELECT *
-            FROM users
-            WHERE id = ?;
-        """
-        row = CURSOR.execute(sql,(id,)).fetchone()
-        return cls.instance_from_db(row) if row else None
+    # @classmethod
+    # def find_by_id(cls,id):
+    #     """Return User object corresponding to the table row matching the specified primary key"""
+    #     sql="""
+    #         SELECT *
+    #         FROM users
+    #         WHERE id = ?;
+    #     """
+    #     row = CURSOR.execute(sql,(id,)).fetchone()
+    #     return cls.instance_from_db(row) if row else None
 
-    @classmethod
-    def find_by_username(cls,username):
-        """Return User object corresponding to the table row matching the specified username"""
-        sql="""
-            SELECT *
-            FROM users
-            WHERE username = ?;
-        """
-        row = CURSOR.execute(sql,(username,)).fetchone()
-        return cls.instance_from_db(row) if row else None
+    # @classmethod
+    # def find_by_username(cls,username):
+    #     """Return User object corresponding to the table row matching the specified username"""
+    #     sql="""
+    #         SELECT *
+    #         FROM users
+    #         WHERE username = ?;
+    #     """
+    #     row = CURSOR.execute(sql,(username,)).fetchone()
+    #     return cls.instance_from_db(row) if row else None
