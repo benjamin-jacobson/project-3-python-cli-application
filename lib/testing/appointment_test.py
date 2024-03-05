@@ -32,3 +32,21 @@ class TestAppointment:
 
         apt_1 = Appointment.create(user_1, vendor_1, "in person", 2024) # user, vendor, appointment_type, appointment_year
         assert ((apt_1.user,apt_1.vendor,apt_1.appointment_type,apt_1.appointment_year)==(user_1,vendor_1,"in person",2024))
+
+    
+    def test_initialized_appointment_and_table_insert(self):
+        '''Appointment is initialized'''
+        User.drop_table()
+        User.create_table()
+        user_1 = User("Roberto",12)
+
+        Vendor.drop_table()
+        Vendor.create_table()
+        vendor_1 = Vendor.create("Twitter", 12)
+
+        Appointment.drop_table()
+        Appointment.create_table()
+
+        apt_1 = Appointment.create(user_1, vendor_1, "in person", 2024) # user, vendor, appointment_type, appointment_year
+        assert ((apt_1.user, apt_1.vendor, apt_1.appointment_type ,apt_1.appointment_year)==(user_1,vendor_1,"in person",2024))
+

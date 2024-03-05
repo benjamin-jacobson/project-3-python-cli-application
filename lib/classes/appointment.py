@@ -42,13 +42,6 @@ class Appointment:
             self._vendor = vendor
         else:
             raise Exception("vendor must be of class Vendor.")
-
-    @classmethod
-    def create(cls, user, vendor, appointment_type, appointment_year):
-        """ Initialize a new Appointment instance and save the object to the database """
-        appointment = cls(user, vendor, appointment_type, appointment_year)
-        # appointment.save()
-        return appointment
     
     @classmethod
     def create_table(cls):
@@ -76,40 +69,44 @@ class Appointment:
         CONN.commit
         #CONN.close()
 
+    @classmethod
+    def create(cls, user, vendor, appointment_type, appointment_year):
+        """ Initialize a new Appointment instance and save the object to the database """
+        appointment = cls(user, vendor, appointment_type, appointment_year)
+        appointment.save()
+        return appointment
 
-    ### need to clean below and convert to appointments
-    
     def save(self):
         '''
-        Insert a new row into the persistant db of the current user instance.
+        Insert a new row into the persistant db of the current appointment instance.
         Update object id attibute using the primary key of the new row
         Save the object in the local dictionary using the table rows PK as dictionary key
         NOTE: used in class method create().
         '''
 
         sql ="""
-            INSERT INTO users (username, cohort_id)
-            VALUES (?, ?);
+            INSERT INTO appointments (user_id, vendor_id, appointment_type,appointment_year)
+            VALUES (?, ?, ?, ?);
 
         """
-        CURSOR.execute(sql, (self.username, self.cohort_id))
+        CURSOR.execute(sql, (self.user.id, self.vendor.id, self.appointment_type, self.appointment_year ))
         CONN.commit()
 
         # Getting the PK from the cursor, and using as the instance id
         self.id = CURSOR.lastrowid
         print(CURSOR.lastrowid)
-        # Adding self (current user) with PK as key to class attribute with all saves {}
-        type(self).all_users_persistant[self.id] = self
+        # Adding self (current appointment) with PK as key to class attribute with all saves {}
+        type(self).all_appointments_persistant[self.id] = self
 
     @classmethod
-    def get_all_data_in_user_database_table(cls):
-        """Return a list of data in the user table."""
+    def get_all_data_in_appointments_database_table(cls):
+        """Return a list of data in the appointments table."""
         sql = """
-            SELECT * FROM users;
+            SELECT * FROM appointments;
         """
         rows = CURSOR.execute(sql).fetchall()
         return rows
-
+    ### need to clean below and convert to appointments
     @classmethod
     def get_all_objects(cls):
         """ Return a list containing one object per table row.
