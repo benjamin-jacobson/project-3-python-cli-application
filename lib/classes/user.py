@@ -182,3 +182,7 @@ class User:
         """
         row = CURSOR.execute(sql,(username,)).fetchone()
         return cls.instance_from_db(row) if row else None
+
+
+    def appointments(self):
+        return [apt for apt in Appointments.all_appointments_persistant if apt.user == self]

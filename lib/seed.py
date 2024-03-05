@@ -12,62 +12,36 @@ def seed_database():
     User.create_table()
 
     # Creating seed data
-    u1 = User.create("Mikey",14)
-    u2 = User.create("Benny",27)
-    print(u1)
-    print(len(User.all_users))
-    print(len(User.all_users_persistant))
+    u1 = User.create("Machelangelo",1)
+    u2 = User.create("Leonardo",1)
+    u1 = User.create("Donatello",1)
+    u2 = User.create("Rafael",1)
+    u2 = User.create("Professor X",2)
+    u2 = User.create("Wolverine",2)
 
-    out = User.get_all_data_in_user_database_table()
-    print("All rows in db:")
-    print(out)
-
-    out = User.get_all_objects()
-    print(f"All rows in db and local {out}:")
-    print(f"Just local {User.all_users_persistant}")
-
-    print(u2)
-    print("---")
-    u2.delete()
-
-    print(f"Testing deleting user 2:{u2} ")
-    out = User.get_all_objects()
-    print("All rows in db and local {}:")
-    print(out)
+    print(User.get_all_objects())
 
     # Vendor
     Vendor.drop_table()
     Vendor.create_table()
-    vendor_1 = Vendor.create("Twitter", 234)
-    vendor_2 = Vendor.create("Ebay", 222)
+    v1 = Vendor.create("Library", 1)
+    v2 = Vendor.create("Museum", 1)
+    v3 = Vendor.create("Kens Artisan Pizza", 2)
+    v4 = Vendor.create("Quarterworld", 2)
 
+    print(Vendor.get_all_objects())
 
-    # Another seed test with appointments too
-
-    User.drop_table()
-    User.create_table()
-    user_1 = User.create("Robertoss",12)
-    user_2 = User.create("Michelangelo",124)
-
-    Vendor.drop_table()
-    Vendor.create_table()
-    vendor_1 = Vendor.create("Twitter", 12)
-    vendor_2 = Vendor.create("KensArtisanPizza", 100)
+    # Appointment
 
     Appointment.drop_table()
     Appointment.create_table()
 
-    apt_1 = Appointment.create(user_1, vendor_1, "in person", 2024) # user, vendor, appointment_type, appointment_year
-    apt_2 = Appointment.create(user_2, vendor_2, "in person", 2023) # user, vendor, appointment_type, appointment_year
-    assert ((apt_1.user, apt_1.vendor, apt_1.appointment_type ,apt_1.appointment_year)==(user_1,vendor_1,"in person",2024))
+    a1 = Appointment.create(u1, v3, "in person", 2024) # user, vendor, appointment_type, appointment_year
+    a1 = Appointment.create(u1, v3, "in person", 2024) # user, vendor, appointment_type, appointment_year
+    a1 = Appointment.create(u1, v3, "in person", 2023) # user, vendor, appointment_type, appointment_year
+    a1 = Appointment.create(u1, v3, "in person", 2022) # user, vendor, appointment_type, appointment_year
 
     print(Appointment.get_all_data_in_appointments_database_table())
-    print("-----")
-    print(Appointment.get_all_objects())
-
-    print("-----")
-    apt_2.delete()
-    print(Appointment.get_all_objects())
 
     # Closing database connection
     CONN.close()
