@@ -130,13 +130,17 @@ class Appointment:
         apt = cls.all_appointments_persistant.get(row[0]) # row 0 is the PK by design
         if apt:
             # ensure attributes match row values in case local instance was modified # TODO what if different?
-            apt.user.id = row[1]
-            apt.vendor.id = row[2]
+            print(apt)
+            apt.user = User.find_by_id(row[1]) # db stores the id, not the user instance, need to get it
+            apt.vendor = Vendor.find_by_id(row[2]) # same as ^
             apt.appointment_type = row[3]
             apt.appointment_year = row[4]
         else:
             #
-            apt = cls(row[1],row[2],row[3],row[4])
+            apt = cls(User.find_by_id(row[1]),
+                        Vendor.find_by_id(row[2]),
+                        row[3],
+                        row[4]) # same as ^
             apt.id = row[0]
             cls.all_appointments_persistant[apt.id] = apt
         return apt
@@ -168,25 +172,3 @@ class Appointment:
         """
         CURSOR.execute(sql, (self.user.id, self.vendor.id,self.appointment_type,self.appointment_year))
         CONN.commit()
-
-    # @classmethod
-    # def find_by_id(clsgi,id):
-    #     """Return User object corresponding to the table row matching the specified primary key"""
-    #     sql="""
-    #         SELECT *
-    #         FROM users
-    #         WHERE id = ?;
-    #     """
-    #     row = CURSOR.execute(sql,(id,)).fetchone()
-    #     return cls.instance_from_db(row) if row else None
-
-    # @classmethod
-    # def find_by_username(cls,username):
-    #     """Return User object corresponding to the table row matching the specified username"""
-    #     sql="""
-    #         SELECT *
-    #         FROM users
-    #         WHERE username = ?;
-    #     """
-    #     row = CURSOR.execute(sql,(username,)).fetchone()
-    #     return cls.instance_from_db(row) if row else None

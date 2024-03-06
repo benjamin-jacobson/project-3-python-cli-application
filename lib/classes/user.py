@@ -1,6 +1,17 @@
+import os
+import sys
+from os import path
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(parent_dir)
+
+# from classes.vendor import Vendor
 from classes.__init__ import CONN, CURSOR
 
 class User:
+
+    
+
     all_users = []
     all_users_persistant = {}
 
@@ -183,6 +194,8 @@ class User:
         row = CURSOR.execute(sql,(username,)).fetchone()
         return cls.instance_from_db(row) if row else None
 
-
-    def appointments(self):
-        return [apt for apt in Appointments.all_appointments_persistant if apt.user == self]
+    def get_appointments(self):
+        from classes.appointment import Appointment # avoiding circular dependency
+        x = Appointment.get_all_objects()
+        y = [f"{apt.appointment_year}, {apt.vendor.name}." for apt in x if apt.user == self]
+        return y

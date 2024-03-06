@@ -16,6 +16,7 @@ def menu():
     print("3. Create a new user.")
     print("4. Delete a user.")
     print("5. Find all users in a cohort.")
+    print("6. Find all appointments for a user.")
 
 
 
@@ -44,6 +45,15 @@ def main():
         elif choice =="5":
             cohort_id = input("Enter the cohort id (0 is default): ")
             print(User.find_by_cohort(cohort_id))
+        elif choice == "6":
+            print("see all current usernames:")
+            print(User.get_all_objects())
+            username_ = input("Enter the username to show appointments for: ")
+            if u_ := User.find_by_username(username_):
+                print(u_)
+                print(u_.get_appointments())
+            else:
+                print(f"Username {U_} not found.")
         else:
             print("Invalid choice. Try again, but something different next time.")
 

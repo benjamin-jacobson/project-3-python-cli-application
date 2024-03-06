@@ -12,12 +12,12 @@ def seed_database():
     User.create_table()
 
     # Creating seed data
-    u1 = User.create("Machelangelo",1)
+    u1 = User.create("Michelangelo",1)
     u2 = User.create("Leonardo",1)
-    u1 = User.create("Donatello",1)
-    u2 = User.create("Rafael",1)
-    u2 = User.create("Professor X",2)
-    u2 = User.create("Wolverine",2)
+    u3 = User.create("Donatello",1)
+    u4 = User.create("Rafael",1)
+    u5 = User.create("Professor X",2)
+    u6 = User.create("Wolverine",2)
 
     print(User.get_all_objects())
 
@@ -32,16 +32,18 @@ def seed_database():
     print(Vendor.get_all_objects())
 
     # Appointment
-
     Appointment.drop_table()
     Appointment.create_table()
-
     a1 = Appointment.create(u1, v3, "in person", 2024) # user, vendor, appointment_type, appointment_year
     a1 = Appointment.create(u1, v3, "in person", 2024) # user, vendor, appointment_type, appointment_year
     a1 = Appointment.create(u1, v3, "in person", 2023) # user, vendor, appointment_type, appointment_year
     a1 = Appointment.create(u1, v3, "in person", 2022) # user, vendor, appointment_type, appointment_year
 
     print(Appointment.get_all_data_in_appointments_database_table())
+    print("test")
+    print(u1.get_appointments())
+    print("test2")
+    print(Appointment.get_all_objects())
 
     # Closing database connection
     CONN.close()
