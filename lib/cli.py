@@ -14,9 +14,10 @@ def menu():
     print("1. Some useful function") # TODO delete
     print("2. Get all users.")
     print("3. Create a new user.")
-    print("4. Delete a user.")
+    print("4. Delete a user.") # should add it to delete all there appointments too? BC this breaks the ORM... active flag better
     print("5. Find all users in a cohort.")
     print("6. Find all appointments for a user.")
+    print("7. Create an appointment for a user.")
 
 
 
@@ -51,9 +52,13 @@ def main():
             username_ = input("Enter the username to show appointments for: ")
             if u_ := User.find_by_username(username_):
                 print(u_)
-                print(u_.get_appointments())
+                if len(u_.get_appointments()) == 0:
+                    print(f"There are no appointments for {username_} at this time.")
+                else:
+                    for apt in u_.get_appointments():
+                        print(apt)
             else:
-                print(f"Username {U_} not found.")
+                print(f"Username {username_} not found.")
         else:
             print("Invalid choice. Try again, but something different next time.")
 
