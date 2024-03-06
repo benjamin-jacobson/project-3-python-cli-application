@@ -59,6 +59,34 @@ def main():
                         print(apt)
             else:
                 print(f"Username {username_} not found.")
+        elif choice == "7":
+            # Getting username
+            print("see all current usernames:")
+            print(User.get_all_objects())
+            username_ = input("Enter the exising username: ")
+            if not User.find_by_username(username_):
+                print(f"Username {username_} not found.")
+            else:
+                user_ = User.find_by_username(username_)
+
+            # Getting vendor
+            print("see all current vendors:")
+            print(Vendor.get_all_objects())
+            vendor_ = input("Enter the existing Vendor: ") 
+            if not Vendor.find_by_name(vendor_):
+                print(f"Vendor {vendor_} not found.")
+            else:
+                vendor_ = Vendor.find_by_name(vendor_)
+            
+            # Getting appointment type and year
+            appointment_type_ = input("Enter the appointment type: ")
+            appointment_year_ = input("Enter the appointment year: ")
+
+            Appointment.create(user=user_, 
+                                vendor=vendor_, 
+                                appointment_type=appointment_type_, 
+                                appointment_year=appointment_year_)
+
         else:
             print("Invalid choice. Try again, but something different next time.")
 
