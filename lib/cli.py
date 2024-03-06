@@ -17,7 +17,10 @@ def menu():
     print("4. Delete a user.") # should add it to delete all there appointments too? BC this breaks the ORM... active flag better
     print("5. Find all users in a cohort.")
     print("6. Find all appointments for a user.")
-    print("7. Create an appointment for a user.")
+    print("7. Create an appointment for a user.") # delete an appointment by year/vendor is a little most complex but need
+    print("8. Get all vendors.")
+    print("9. Create a new vendor.")
+    print("10. Delete a vendor.") # should add it to delete all there appointments too? BC this breaks the ORM... active flag better
 
 
 
@@ -86,6 +89,12 @@ def main():
                                 vendor=vendor_, 
                                 appointment_type=appointment_type_, 
                                 appointment_year=appointment_year_)
+        elif choice == "8":
+            print(Vendor.get_all_objects())
+        elif choice == "9":
+            name_ = input("Enter the new vendor name: ")
+            type_id_ = input("Enter the type_id id (0 if none): ")
+            print(Vendor.create(name_, type_id_))
 
         else:
             print("Invalid choice. Try again, but something different next time.")
