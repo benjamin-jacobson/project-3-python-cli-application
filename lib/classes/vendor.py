@@ -169,3 +169,9 @@ class Vendor:
         """
         row = CURSOR.execute(sql,(name,)).fetchone()
         return cls.instance_from_db(row) if row else None
+
+    def get_appointments(self):
+        from classes.appointment import Appointment # avoiding circular dependency
+        x = Appointment.get_all_objects()
+        y = [f"{apt.appointment_year}, {apt.user.username}." for apt in x if apt.vendor == self]
+        return y
