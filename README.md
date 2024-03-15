@@ -1,6 +1,6 @@
 # Project 3: Python Application with CLI + ORM
 
-![CLI](https://github.com/benjamin-jacobson/project-3-python-cli-application/tree/main/images/cli_prototype.JPG)
+![CLI](https://github.com/benjamin-jacobson/project-3-python-cli-application/blob/main/images/cli_prototype.JPG?raw=true)
 
 
 ## Application Description:
