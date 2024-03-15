@@ -1,5 +1,8 @@
 # Project 3: Python Application with CLI + ORM
 
+![CLI](https://github.com/benjamin-jacobson/project-3-python-cli-application/tree/main/images/cli_prototype.JPG)
+
+
 ## Application Description:
 - This program has user, vendors and their appointments. You can add, delete, and see information for each, among other methods.
 - The program launches and the user can select from a menu of options to pull information from the local database.
