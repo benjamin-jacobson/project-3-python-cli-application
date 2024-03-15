@@ -171,6 +171,7 @@ class Vendor:
         return cls.instance_from_db(row) if row else None
 
     def get_appointments(self):
+        """Method to get a vendor's appointments"""
         from classes.appointment import Appointment # avoiding circular dependency
         x = Appointment.get_all_objects()
         y = [f"{apt.appointment_year}, {apt.user.username}." for apt in x if apt.vendor.name == self.name]

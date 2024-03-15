@@ -7,10 +7,6 @@ def helper_1():
     print("Use the menu options to use each functionality.")
 
 def helper_2():
-    # print(User.get_all_objects())
-    # print(type(User.get_all_objects()))
-    # print(User.get_all_objects()[0])
-    # print(type(User.get_all_objects()[0]))
     print([i.username for i in User.get_all_objects()])
 
 def helper_3():

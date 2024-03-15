@@ -1,13 +1,25 @@
 # Project 3: Python Application with CLI + ORM
 
-# Running the Applicaion
+## Application Description:
+- This program has user, vendors and their appointments. You can add, delete, and see information for each, among other methods.
+- The program launches and the user can select from a menu of options to pull information from the local database.
+
+## Running the Applicaion
 - python lib/cli.py
 
-# Files
+## Data Model
+- There are three classes: User, Vendor and Appointment.
+- User is in a one to many relationship with Appointment
+- Vendor is in a one to many relationship with Appointment
+- User and Vendor are in a many to many relationship.
+- Property methods are included for class attributes, and each class has ORM CRUD methods among others such as get_all_...
+
+## Files
+- lib/seed.py to seed the database with fake data.
 - lib/cli.py: runs the CLI
 - lib/helpers.py: helper functions for mvp functionality
 
-# Environment Setup
+## Environment Setup
 ## Python Manager(within Windows WSL2)
 - Installing pyenv
     - curl https://pyenv.run | bash
@@ -26,16 +38,17 @@
 - Installing packages
     - pipenv install pandas (this will put in the piplock file)
 
-# Database Local Setup
+## Database Local Setup
 - See below for setting up SQLite on WSL2
 - sqlite3 version 3.31.1
 - Creating database:
-    - sqlite3 example2024.db (to updage to actual name later)
+    - sqlite3 testb1.db
 
-# Running Tests
+## Running Tests
+- Some tests were implemented in development, and can be ran with the following.
 - pytest -x 
 
-# Resources
+### Resources
 - https://www.infoworld.com/article/3561758/how-to-manage-python-projects-with-pipenv.html
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-sqlite
 

@@ -10,16 +10,12 @@ from classes.__init__ import CONN, CURSOR
 
 class User:
 
-    
-
-    all_users = []
     all_users_persistant = {}
 
     def __init__(self,username, cohort_id, id=None):
         self.id = id
         self.username = username
         self.cohort_id = cohort_id
-        type(self).all_users.append(self)
 
     def __repr__(self):
         return (
