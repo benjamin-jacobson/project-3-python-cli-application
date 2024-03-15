@@ -130,7 +130,6 @@ class Appointment:
         apt = cls.all_appointments_persistant.get(row[0]) # row 0 is the PK by design
         if apt:
             # ensure attributes match row values in case local instance was modified # TODO what if different?
-            print(apt)
             apt.user = User.find_by_id(row[1]) # db stores the id, not the user instance, need to get it
             apt.vendor = Vendor.find_by_id(row[2]) # same as ^
             apt.appointment_type = row[3]

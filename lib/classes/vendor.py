@@ -173,5 +173,5 @@ class Vendor:
     def get_appointments(self):
         from classes.appointment import Appointment # avoiding circular dependency
         x = Appointment.get_all_objects()
-        y = [f"{apt.appointment_year}, {apt.user.username}." for apt in x if apt.vendor == self]
+        y = [f"{apt.appointment_year}, {apt.user.username}." for apt in x if apt.vendor.name == self.name]
         return y

@@ -45,7 +45,8 @@ def seed_database():
     print("test2")
     print(Appointment.get_all_objects())
     print("test4")
-    Vendor.all_vendors_persistant[2].get_appointments()
+    print(Vendor.all_vendors_persistant[3])
+    print(Vendor.all_vendors_persistant[3].get_appointments())
     print("end")
 
     # Closing database connection
