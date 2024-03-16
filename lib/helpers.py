@@ -88,6 +88,26 @@ def helper_11():
     v = Vendor.find_by_name(vendor_name)
     print(v.get_appointments())
 
+def helper_12():
+    print("See all current usernames:")
+    print([i.username for i in User.get_all_objects()])
+    username_ = input("Enter the username to show appointments for: ")
+    if u_ := User.find_by_username(username_):
+        #print(u_)
+        if len(u_.get_appointments_obj()) == 0:
+            print(f"There are no appointments for {username_} at this time.")
+        else:
+            for apt in u_.get_appointments():
+                print(apt)
+            apt_to_delete = input("Which appointment do you want to delete? (select the id number): ")
+
+            # Get the object of appointment and use instance method to delete
+            obj_to_delete = [i for i in Appointment.get_all_objects() if str(i.id) == str(apt_to_delete)][0] # first instance of list
+            obj_to_delete.delete()
+            
+    else:
+        print(f"Username {username_} not found.")
+
 def exit_program():
     print("Goodbye!")
     exit()

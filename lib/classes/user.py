@@ -193,5 +193,11 @@ class User:
     def get_appointments(self):
         from classes.appointment import Appointment # avoiding circular dependency
         x = Appointment.get_all_objects()
-        y = [f"{apt.appointment_year}, {apt.vendor.name}." for apt in x if apt.user == self]
+        y = [f"{apt.id}: {apt.appointment_year}, {apt.vendor.name}." for apt in x if apt.user == self]
+        return y
+    
+    def get_appointments_obj(self):
+        from classes.appointment import Appointment # avoiding circular dependency
+        x = Appointment.get_all_objects()
+        y = [apt for apt in x if apt.user == self]
         return y

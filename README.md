@@ -51,6 +51,11 @@
 - Some tests were implemented in development, and can be ran with the following.
 - pytest -x 
 
+## Future iterations
+- Rather than delete from database, use a flag such as status "active" or "deactivated".
+- Also use time in a more suffisticated manner. 
+- Add aggregate class methods for more summary statistics and information.
+
 ### Resources
 - https://www.infoworld.com/article/3561758/how-to-manage-python-projects-with-pipenv.html
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-sqlite

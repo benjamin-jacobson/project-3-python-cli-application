@@ -12,14 +12,15 @@ def menu():
     print("1. Tell me about the program.")
     print("2. Get all users.")
     print("3. Create a new user.")
-    print("4. Delete a user.") # should add it to delete all there appointments too? BC this breaks the ORM... active flag better
+    print("4. Delete a user.") # Future iteration use a flag to deactivate appointments
     print("5. Find all users in a cohort.")
     print("6. Find all appointments for a user.")
-    print("7. Create an appointment for a user.") # delete an appointment by year/vendor is a little most complex but need
+    print("7. Create an appointment for a user.")
     print("8. Get all vendors.")
     print("9. Create a new vendor.")
-    print("10. Delete a vendor.") # should add it to delete all there appointments too? BC this breaks the ORM... active flag better
+    print("10. Delete a vendor.") # Future iteration use a flag to deactivate appointments for deactivated vendor. 
     print("11. Get a vendor's appointments.")
+    print("12. Delete an appointment.")
 
 def main():
     while True:
@@ -50,6 +51,8 @@ def main():
             helper_10()
         elif choice == "11":
             helper_11()
+        elif choice == "12":
+            helper_12()
         
         else:
             print("Invalid choice. Try again, but something different next time.")
